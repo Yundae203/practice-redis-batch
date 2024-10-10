@@ -1,4 +1,4 @@
-package enterprise.test.infra.redis;
+package enterprise.test.common.redis;
 
 import org.springframework.stereotype.Service;
 

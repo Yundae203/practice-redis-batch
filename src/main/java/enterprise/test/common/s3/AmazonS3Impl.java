@@ -1,4 +1,4 @@
-package enterprise.test.infra.s3;
+package enterprise.test.common.s3;
 
 import org.springframework.stereotype.Component;
 

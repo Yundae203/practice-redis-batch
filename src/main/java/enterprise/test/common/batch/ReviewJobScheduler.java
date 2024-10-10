@@ -1,4 +1,4 @@
-package enterprise.test.infra.batch;
+package enterprise.test.common.batch;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;

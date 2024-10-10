@@ -1,8 +1,7 @@
 package enterprise.test.review.controller;
 
-import enterprise.test.collabo.ProductReviewService;
-import enterprise.test.common.CustomClock;
-import enterprise.test.infra.s3.AmazonS3;
+import enterprise.test.application.service.ProductReviewService;
+import enterprise.test.common.s3.AmazonS3;
 import enterprise.test.review.dto.ReviewRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;

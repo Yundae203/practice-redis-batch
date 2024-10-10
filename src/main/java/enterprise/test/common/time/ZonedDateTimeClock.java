@@ -1,4 +1,4 @@
-package enterprise.test.common;
+package enterprise.test.common.time;
 
 import org.springframework.stereotype.Component;
 

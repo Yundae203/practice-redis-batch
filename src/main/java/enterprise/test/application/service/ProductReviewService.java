@@ -1,9 +1,8 @@
-package enterprise.test.collabo;
+package enterprise.test.application.service;
 
-import enterprise.test.common.CustomClock;
-import enterprise.test.infra.redis.RedisService;
-import enterprise.test.infra.redis.ReviewCache;
-import enterprise.test.product.domain.Product;
+import enterprise.test.common.time.CustomClock;
+import enterprise.test.common.redis.RedisService;
+import enterprise.test.common.redis.ReviewCache;
 import enterprise.test.product.service.ProductService;
 import enterprise.test.review.domain.Review;
 import enterprise.test.review.dto.ReviewRequest;

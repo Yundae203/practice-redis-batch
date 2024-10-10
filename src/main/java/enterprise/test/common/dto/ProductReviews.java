@@ -1,4 +1,4 @@
-package enterprise.test.infra.dto;
+package enterprise.test.common.dto;
 
 import enterprise.test.product.domain.Product;
 import enterprise.test.review.domain.Review;
