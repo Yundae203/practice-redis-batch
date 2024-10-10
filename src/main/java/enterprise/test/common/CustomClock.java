@@ -1,4 +1,6 @@
 package enterprise.test.common;
 
-public interface Clock {
+public interface CustomClock<T> {
+
+    public T now();
 }

@@ -1,4 +1,6 @@
 package enterprise.test.infra.batch;
 
-public record KeyCache() {
+import enterprise.test.infra.redis.ReviewCache;
+
+public record KeyCache(Long key, ReviewCache cache) {
 }
