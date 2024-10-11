@@ -12,5 +12,7 @@ public interface ReviewRepository {
 
     boolean existsByProductIdAndUserId(Long productId, Long userId);
 
-    Slice<Review> findByProduct_IdAndIdLessThanOrderByIdDesc(Long productId, Long cursor, Pageable pageable);
+    Slice<Review> findNextPageByProductId(Long productId, Long cursor, Pageable pageable);
+
+    Slice<Review> findFirstPageByProductId(Long productId, Pageable pageable);
 }

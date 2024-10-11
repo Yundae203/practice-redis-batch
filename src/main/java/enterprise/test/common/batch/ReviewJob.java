@@ -44,7 +44,7 @@ public class ReviewJob {
     @Bean
     public Step step() {
         return new StepBuilder("review-update-step", jobRepository)
-                .<KeyCache, Product>chunk(10, transactionManager)
+                .<KeyCache, Product>chunk(5, transactionManager)
                 .reader(reader())
                 .processor(processor())
                 .writer(writer())

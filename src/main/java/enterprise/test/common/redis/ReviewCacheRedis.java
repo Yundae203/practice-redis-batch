@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class ReviewCacheRedis implements RedisService<ReviewCache, Long> {
 
     private final RedisTemplate<String, Object> redisTemplate;
-    private static final String PREFIX = "post:";
+    private static final String PREFIX = "product:";
 
     /**
      * 식별자를 받아서 키를 생성한 뒤 `Redis`에 저장합니다.
@@ -64,7 +64,7 @@ public class ReviewCacheRedis implements RedisService<ReviewCache, Long> {
      */
     @Override
     public Set<Long> keys() {
-        Set<String> keys = redisTemplate.keys(PREFIX + "*");
+        Set<String> keys = redisTemplate.keys(PREFIX + "*"); // product:*
 
         if (keys == null || keys.isEmpty()) {
             return Collections.emptySet();

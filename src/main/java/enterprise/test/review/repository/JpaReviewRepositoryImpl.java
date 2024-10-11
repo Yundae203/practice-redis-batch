@@ -38,13 +38,15 @@ public class JpaReviewRepositoryImpl implements ReviewRepository {
     }
 
     @Override
-    public Slice<Review> findByProduct_IdAndIdLessThanOrderByIdDesc(Long productId, Long cursor, Pageable pageable) {
-        Slice<ReviewEntity> entitySlice = reviewJpaRepository.findByProductIdAndIdLessThanOrderByIdDesc(productId, cursor, pageable);
-
-        List<Review> reviews = entitySlice.getContent().stream()
-                .map(ReviewEntity::toModel)
-                .collect(Collectors.toList());
-
-        return new SliceImpl<>(reviews, pageable, entitySlice.hasNext());
+    public Slice<Review> findNextPageByProductId(Long productId, Long cursor, Pageable pageable) {
+        return reviewJpaRepository.findNextPageByProductId(productId, cursor, pageable)
+                .map(ReviewEntity::toModel);
     }
+
+    @Override
+    public Slice<Review> findFirstPageByProductId(Long productId, Pageable pageable) {
+        return null;
+    }
+
+
 }

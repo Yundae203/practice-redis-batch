@@ -1,11 +1,13 @@
 package enterprise.test.review.controller;
 
 import enterprise.test.application.service.ProductReviewService;
+import enterprise.test.common.dto.ProductReviews;
 import enterprise.test.common.s3.AmazonS3;
 import enterprise.test.review.dto.ReviewRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,6 +30,16 @@ public class ReviewController {
     public void saveReview(@PathVariable("productId") Long productId, @RequestBody ReviewRequest reviewRequest) {
         String imageUrl = uploadImageToS3(reviewRequest.image());
         productReviewService.saveProductReview(reviewRequest, productId, imageUrl);
+    }
+
+    @GetMapping("/{productId}/reviews")
+    public ResponseEntity<ProductReviews> getReviews(
+            @PathVariable("productId") Long productId,
+            @RequestParam(value = "cursor", defaultValue = "#{T(java.lang.Long).MAX_VALUE}") Long cursor,
+            @RequestParam(value = "size", defaultValue = "10") Integer size) {
+
+        ProductReviews productReviews = productReviewService.getProductReviews(productId, cursor, size);
+        return new ResponseEntity<>(productReviews, HttpStatus.OK);
     }
 
     private String uploadImageToS3(MultipartFile image) {

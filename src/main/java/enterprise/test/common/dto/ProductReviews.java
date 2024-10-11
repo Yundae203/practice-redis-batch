@@ -11,11 +11,11 @@ import java.util.List;
 public record ProductReviews(
         int totalCount,
         double score,
-        int cursor,
+        Long cursor,
         List<ReviewResponse> reviews
 ) {
 
-    public static ProductReviews of(Product product, int cursor, List<Review> review) {
+    public static ProductReviews of(Product product, Long cursor, List<Review> review) {
         return ProductReviews.builder()
                 .totalCount(product.getReviewCount())
                 .score(product.getScore())

@@ -48,8 +48,8 @@ public class Product {
     // construct[e]
 
     public void updateCountAndScore(int count, double score) {
-        incrementReviewCount(count);
         calculateScore(score);
+        incrementReviewCount(count);
     }
 
     private void incrementReviewCount(int count) {
@@ -57,6 +57,10 @@ public class Product {
     }
 
     private void calculateScore(double score) {
-        this.score = (this.score + score) / 2;
+        if (reviewCount != 0) {
+            this.score = (this.score + score) / 2;
+        } else {
+            this.score = score;
+        }
     }
 }
