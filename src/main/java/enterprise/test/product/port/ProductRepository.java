@@ -1,12 +1,15 @@
-package enterprise.test.product.repository;
+package enterprise.test.product.port;
 
 
 import enterprise.test.product.domain.Product;
 
 public interface ProductRepository {
 
-    Product save(Product product);
+    void save(Product product);
 
-    Product findById(String id);
+    Product findById(Long id);
 
+    boolean existsById(Long id);
+
+    void update(Product product);
 }
