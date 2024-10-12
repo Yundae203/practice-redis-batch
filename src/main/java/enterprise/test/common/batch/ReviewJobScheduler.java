@@ -1,4 +1,4 @@
-package enterprise.test.infra.batch;
+package enterprise.test.common.batch;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.core.Job;
@@ -14,7 +14,7 @@ public class ReviewJobScheduler {
     private final JobLauncher jobLauncher;
     private final Job job;
 
-    @Scheduled(cron = "0 */1 * * * ?") // 10분마다 실행
+    @Scheduled(cron = "0 */10 * * * ?") // 10분마다 실행
     public void runJob() throws Exception {
         jobLauncher.run(job, new JobParametersBuilder().toJobParameters());
     }

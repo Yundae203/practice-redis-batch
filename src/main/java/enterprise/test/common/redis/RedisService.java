@@ -1,6 +1,4 @@
-package enterprise.test.infra.redis;
-
-import org.springframework.stereotype.Service;
+package enterprise.test.common.redis;
 
 import java.util.Set;
 
@@ -15,5 +13,4 @@ public interface RedisService<T, K> {
     Set<K> keys();
 
     T getAndRemoveValue(K key);
-
 }

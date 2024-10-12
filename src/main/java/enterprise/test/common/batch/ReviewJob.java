@@ -1,14 +1,13 @@
-package enterprise.test.infra.batch;
+package enterprise.test.common.batch;
 
-import enterprise.test.infra.redis.RedisService;
-import enterprise.test.infra.redis.ReviewCache;
+import enterprise.test.common.redis.RedisService;
+import enterprise.test.common.redis.ReviewCache;
 import enterprise.test.product.domain.Product;
 import enterprise.test.product.port.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.batch.core.Job;
 import org.springframework.batch.core.Step;
-import org.springframework.batch.core.configuration.annotation.StepScope;
 import org.springframework.batch.core.job.builder.JobBuilder;
 import org.springframework.batch.core.launch.support.RunIdIncrementer;
 import org.springframework.batch.core.repository.JobRepository;
@@ -18,7 +17,6 @@ import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.ItemWriter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Lazy;
 import org.springframework.retry.RetryPolicy;
 import org.springframework.retry.policy.SimpleRetryPolicy;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -46,7 +44,7 @@ public class ReviewJob {
     @Bean
     public Step step() {
         return new StepBuilder("review-update-step", jobRepository)
-                .<KeyCache, Product>chunk(10, transactionManager)
+                .<KeyCache, Product>chunk(5, transactionManager)
                 .reader(reader())
                 .processor(processor())
                 .writer(writer())
@@ -57,8 +55,6 @@ public class ReviewJob {
     }
 
     @Bean
-    @Lazy
-    @StepScope
     public ItemReader<KeyCache> reader() {
         return new RedisKeyItemReader(redisService); // Redis에 저장된 해시를 전부 가져오는 ItemReader
     }
